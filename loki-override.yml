@@ -1,0 +1,64 @@
+loki:
+  storage:
+    type: s3
+    bucketNames:
+      chunks: shivang-bucket
+      ruler: shivang-bucket
+      admin: shivang-bucket
+    s3:
+      endpoint: https://<IP>:443
+      region: us-east-1
+      s3ForcePathStyle: true
+      insecure: false
+      http_config:
+        insecure_skip_verify: true
+
+  structuredConfig:
+    storage_config:
+      aws:
+        s3: https://<IP>:443/shivang-bucket
+        region: us-east-1
+        s3forcepathstyle: true
+        insecure: false
+        http_config:
+          insecure_skip_verify: true
+
+ingester:
+  extraEnvFrom:
+    - secretRef:
+        name: nkp-mgmt-shiv-loki-obj-creds
+
+distributor:
+  extraEnvFrom:
+    - secretRef:
+        name: nkp-mgmt-shiv-loki-obj-creds
+
+querier:
+  extraEnvFrom:
+    - secretRef:
+        name: nkp-mgmt-shiv-loki-obj-creds
+
+queryFrontend:
+  extraEnvFrom:
+    - secretRef:
+        name: nkp-mgmt-shiv-loki-obj-creds
+
+queryScheduler:
+  extraEnvFrom:
+    - secretRef:
+        name: nkp-mgmt-shiv-loki-obj-creds
+
+indexGateway:
+  extraEnvFrom:
+    - secretRef:
+        name: nkp-mgmt-shiv-loki-obj-creds
+
+compactor:
+  extraEnvFrom:
+    - secretRef:
+        name: nkp-mgmt-shiv-loki-obj-creds
+
+ruler:
+  extraEnvFrom:
+    - secretRef:
+        name: nkp-mgmt-shiv-loki-obj-creds
